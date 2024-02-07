@@ -1,66 +1,34 @@
-## Foundry
+# Token Inheritance
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+## Overview
 
-Foundry consists of:
+The Contract Inheritance system presented here consists of three interconnected contracts: Ownable, Pausable, and Token. These contracts demonstrate a hierarchical structure of inheritance in Solidity, allowing for the creation of a token with ownership and pausable functionality.
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+## Contract :
 
-## Documentation
+### Owner Contract
 
-https://book.getfoundry.sh/
+The Ownable contract provides a basic ownership structure. Here is an overview of the functions:
 
-## Usage
+- `onlyOwner`: Ensures that the modified function can only be called by the owner of the contract.
 
-### Build
+### Pausable Contract
 
-```shell
-$ forge build
-```
+The Pausable contract inherits from Ownable and introduces pausable functionality to the system. Here is an overview of the functions:
 
-### Test
+- `pause`: Pauses the contract, preventing certain functions from executing.
+- `unpause`: Unpauses the contract, allowing normal functions to resume.
+- `whenNotPause`: Ensures that the modified function can only be called when the contract is not paused.
 
-```shell
-$ forge test
-```
+### Token Contract
 
-### Format
+The Token contract inherits from Pausable and extends functionality to handle token transfers. Here is an overview of the functions:
 
-```shell
-$ forge fmt
-```
+- `transfer`: Transfers tokens from the sender's balance to the specified recipient.
+- `mint`: Mint token to address owner.
 
-### Gas Snapshots
+## Contract Address
 
-```shell
-$ forge snapshot
-```
-
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+- Ownable Address = 0xc0f91195a8f6D346655176388D01Df128D72dD0E (Sepolia Network)
+- Pausable Address = 0xcB7E152b5d3E349f82efA58ea0D0Da7424C8E8e3 (Sepolia Network)
+- Token Address = 0x2Db85088eDF56574edd8362e91A5beeBBF9F0782 (Sepolia Network)
